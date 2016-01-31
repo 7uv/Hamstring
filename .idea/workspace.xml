@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ce1d65a1-60f5-469c-a079-b176c6376af2" name="Default" comment="view set up">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/Hamstring_javaEEApplication_exploded.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/runConfigurations/ff.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/META-INF/application.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/Hamstring_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/Hamstring_war_exploded.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hamstring.iml" afterPath="$PROJECT_DIR$/Hamstring.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Hamstring.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1374,7 +1367,7 @@
       <workItem from="1453835243917" duration="1394000" />
       <workItem from="1453836675212" duration="430000" />
       <workItem from="1453995470209" duration="1186000" />
-      <workItem from="1454135105251" duration="12832000" />
+      <workItem from="1454135105251" duration="13023000" />
     </task>
     <task id="LOCAL-00001" summary="view set up">
       <created>1454222761495</created>
@@ -1391,7 +1384,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15842000" />
+    <option name="totallyTimeSpent" value="16033000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="24" width="1368" height="727" extended-state="6" />
