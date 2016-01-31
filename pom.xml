@@ -3,11 +3,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>centralrepositron</groupId>
-	<artifactId>centralrepositron</artifactId>
+	<groupId>Hamstring</groupId>
+	<artifactId>Hamstring</artifactId>
 	<packaging>war</packaging>
 	<version>1.0</version>
-	<name>centralrepositron</name>
+	<name>Hamstring</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -181,7 +181,7 @@
 			<!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
 			<id>openshift</id>
 			<build>
-				<finalName>centralrepositron</finalName>
+				<finalName>Hamstring</finalName>
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -190,7 +190,7 @@
 						<configuration>
 							<failOnMissingWebXml>false</failOnMissingWebXml>
 							<outputDirectory>deployments</outputDirectory>
-							<warName>ROOT</warName>
+							<warName>Hamstring</warName>
 						</configuration>
 					</plugin>
 				</plugins>
@@ -204,7 +204,7 @@
 			<!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
 			<id>local</id>
 			<build>
-				<finalName>centralrepositron</finalName>
+				<finalName>Hamstring</finalName>
 				<plugins>
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
@@ -227,6 +227,8 @@
 							<failOnMissingWebXml>false</failOnMissingWebXml>
 							<outputDirectory>target</outputDirectory>
 							<warName>${project.build.finalName.version}</warName>
+							<includeEmptyDirectories>true</includeEmptyDirectories>
+                            <webXml>/web/WEB-INF/web.xml</webXml>
 						</configuration>
 					</plugin>
 					<plugin>
@@ -252,11 +254,11 @@
 		</profile>
 	</profiles>
 	
-	<url>https://centralrepositron-sayantan.rhcloud.com</url>
+	<url>https://Hamstring-sayantan.rhcloud.com</url>
 	<description>This is the main dev environment. Please feel free to contribute at your will.</description>
 	<organization>
-		<name>Central Repositron</name>
-		<url>https://centralrepositron-sayantan.rhcloud.com</url>
+		<name>Hamstring</name>
+		<url>https://Hamstring-sayantan.rhcloud.com</url>
 	</organization>
 	<inceptionYear>Nov. 2008</inceptionYear>
 </project>

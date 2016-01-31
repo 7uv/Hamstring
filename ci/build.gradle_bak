@@ -5,7 +5,6 @@
  * For more details take a look at the Java Quickstart chapter in the Gradle
  * user guide available at http://gradle.org/docs/1.10/userguide/tutorial_java_projects.html
  */
-
 // Apply plugin automation
 apply from: 'http://www.tellurianring.com/projects/gradle-plugins/gradle-templates/apply.groovy'
 // apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
@@ -17,9 +16,6 @@ apply plugin: 'eclipse'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'maven'
 apply plugin: 'war'
-apply plugin: 'idea'
-//apply plugin: 'tomcat'
-//apply plugin: 'jboss'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -117,10 +113,39 @@ dependencies {
     // 'test.useTestNG()' to your build script.
     // No need to put test.useJUnit() separately as it is the default setting in java plugin
     testCompile 'junit:junit:4.11'
+
+    // Embedded tomcat web container https://github.com/bmuschko/gradle-tomcat-plugin
+    classpath 'com.bmuschko:gradle-tomcat-plugin:2.2.4'
+    def tomcatVersion = '7.0.59'
+    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+            "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
+            "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
 }
 
 // gretty config for deployment
 // gretty { port = 8080 contextPath = '/' servletContainer = 'tomcat8' }
+
+// config tomcat ports
+tomcat {
+    httpPort = 8090
+    httpsPort = 8091
+    enableSSL = false
+    contextPath = 'Hamstring'
+
+    users {
+        user {
+            username = 'user1'
+            password = '123456'
+            roles = ['developers', 'admin']
+        }
+
+        user {
+            username = 'user2'
+            password = 'abcdef'
+            roles = ['manager']
+        }
+    }
+}
 
 // Configuration versioning parameters for eclipse task
 eclipse {
@@ -187,6 +212,10 @@ configurations {
     }
 }
 
+apply plugin: 'com.bmuschko.tomcat'
+//apply plugin: 'tomcat'
+//apply plugin: 'jboss'
+
 // Synchronise and Pretty-fy
 // The o/p of this section should be present in resources/etc folder for reference.
 // This task  can be used to list out all the dependencies
@@ -207,7 +236,22 @@ task ci(dependsOn: ['clean', 'build', 'uploadArchives']) {
 task scrub(type: Delete) {
     delete "build"
 }
+// run tomcat container
+ext {
+    tomcatStopPort = 8081
+    tomcatStopKey = 'stopKey'
+}
 
+task integrationTomcatRun(type: com.bmuschko.gradle.tomcat.tasks.TomcatRun) {
+    stopPort = tomcatStopPort
+    stopKey = tomcatStopKey
+    daemon = true
+}
+
+task integrationTomcatStop(type: com.bmuschko.gradle.tomcat.tasks.TomcatStop) {
+    stopPort = tomcatStopPort
+    stopKey = tomcatStopKey
+}
 // print the o/p on console
 sourceSets.all {
     println name

@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="hamstring" default="all">
+  
+  
+  <property file="hamstring.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.swc"/>
+    <include name="*.apk"/>
+    <include name="*.zip"/>
+    <include name="*.egg"/>
+    <include name="*.ane"/>
+    <include name="*.jar"/>
+    <include name="*.ear"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
+  <path id="jdk.classpath.1.8">
+    <fileset dir="${jdk.home.1.8}">
+      <include name="../latest/jre/lib/charsets.jar"/>
+      <include name="../latest/jre/lib/deploy.jar"/>
+      <include name="../latest/jre/lib/ext/cldrdata.jar"/>
+      <include name="../latest/jre/lib/ext/dnsns.jar"/>
+      <include name="../latest/jre/lib/ext/jaccess.jar"/>
+      <include name="../latest/jre/lib/ext/jfxrt.jar"/>
+      <include name="../latest/jre/lib/ext/localedata.jar"/>
+      <include name="../latest/jre/lib/ext/nashorn.jar"/>
+      <include name="../latest/jre/lib/ext/sunec.jar"/>
+      <include name="../latest/jre/lib/ext/sunjce_provider.jar"/>
+      <include name="../latest/jre/lib/ext/sunpkcs11.jar"/>
+      <include name="../latest/jre/lib/ext/zipfs.jar"/>
+      <include name="../latest/jre/lib/javaws.jar"/>
+      <include name="../latest/jre/lib/jce.jar"/>
+      <include name="../latest/jre/lib/jfr.jar"/>
+      <include name="../latest/jre/lib/jfxswt.jar"/>
+      <include name="../latest/jre/lib/jsse.jar"/>
+      <include name="../latest/jre/lib/management-agent.jar"/>
+      <include name="../latest/jre/lib/plugin.jar"/>
+      <include name="../latest/jre/lib/resources.jar"/>
+      <include name="../latest/jre/lib/rt.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.8}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.hibernate_4.2.2-4.2.2.classpath">
+    <pathelement location="${basedir}/lib/antlr-2.7.7.jar"/>
+    <pathelement location="${basedir}/lib/dom4j-1.6.1.jar"/>
+    <pathelement location="${basedir}/lib/hibernate-commons-annotations-4.0.2.Final.jar"/>
+    <pathelement location="${basedir}/lib/hibernate-core-4.2.2.Final.jar"/>
+    <pathelement location="${basedir}/lib/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
+    <pathelement location="${basedir}/lib/javassist-3.15.0-GA.jar"/>
+    <pathelement location="${basedir}/lib/jboss-logging-3.1.0.GA.jar"/>
+    <pathelement location="${basedir}/lib/jboss-transaction-api_1.1_spec-1.0.1.Final.jar"/>
+  </path>
+  
+  <path id="library.java_ee_6-java_ee_6.classpath">
+    <pathelement location="${basedir}/lib/javax.ejb.jar"/>
+    <pathelement location="${basedir}/lib/javax.jms.jar"/>
+    <pathelement location="${basedir}/lib/javax.resource.jar"/>
+    <pathelement location="${basedir}/lib/javax.servlet.jar"/>
+    <pathelement location="${basedir}/lib/javax.servlet.jsp.jar"/>
+    <pathelement location="${basedir}/lib/javax.servlet.jsp.jstl.jar"/>
+  </path>
+  
+  <path id="library.jax-ws-glassfish_/_jax-ws_2.2_ri_/_metro_1.x_/_jwsdp_2.2.classpath">
+    <pathelement location="${basedir}/lib/FastInoset.jar"/>
+    <pathelement location="${basedir}/lib/gmbal-api-only.jar"/>
+    <pathelement location="${basedir}/lib/ha-api.jar"/>
+    <pathelement location="${basedir}/lib/javax.annotation.jar"/>
+    <pathelement location="${basedir}/lib/jaxb-api.jar"/>
+    <pathelement location="${basedir}/lib/jaxb-impl.jar"/>
+    <pathelement location="${basedir}/lib/jaxb-xjc.jar"/>
+    <pathelement location="${basedir}/lib/jaxws-api.jar"/>
+    <pathelement location="${basedir}/lib/jaxws-rt.jar"/>
+    <pathelement location="${basedir}/lib/jaxws-tools.jar"/>
+    <pathelement location="${basedir}/lib/jsr181-api.jar"/>
+    <pathelement location="${basedir}/lib/mail.jar"/>
+    <pathelement location="${basedir}/lib/management-api.jar"/>
+    <pathelement location="${basedir}/lib/mimepull.jar"/>
+    <pathelement location="${basedir}/lib/policy.jar"/>
+    <pathelement location="${basedir}/lib/saaj-api.jar"/>
+    <pathelement location="${basedir}/lib/saaj-impl.jar"/>
+    <pathelement location="${basedir}/lib/stax-ex.jar"/>
+    <pathelement location="${basedir}/lib/stax2-api.jar"/>
+    <pathelement location="${basedir}/lib/streambuffer.jar"/>
+    <pathelement location="${basedir}/lib/woodstox-core-asl.jar"/>
+  </path>
+  
+  <path id="library.jpa_2.0-2.0.classpath">
+    <pathelement location="${basedir}/lib/javax.persistence.jar"/>
+  </path>
+  
+  <path id="library.maven:_ant:ant:1.6.5.classpath">
+    <pathelement location="${path.variable.maven_repository}/ant/ant/1.6.5/ant-1.6.5.jar"/>
+  </path>
+  
+  <path id="library.maven:_antlr:antlr:2.7.7.classpath">
+    <pathelement location="${path.variable.maven_repository}/antlr/antlr/2.7.7/antlr-2.7.7.jar"/>
+  </path>
+  
+  <path id="library.maven:_asm:asm-commons:3.3.classpath">
+    <pathelement location="${path.variable.maven_repository}/asm/asm-commons/3.3/asm-commons-3.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_asm:asm-tree:3.3.classpath">
+    <pathelement location="${path.variable.maven_repository}/asm/asm-tree/3.3/asm-tree-3.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_asm:asm:3.3.classpath">
+    <pathelement location="${path.variable.maven_repository}/asm/asm/3.3/asm-3.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_bouncycastle:bcmail-jdk14:138.classpath">
+    <pathelement location="${path.variable.maven_repository}/bouncycastle/bcmail-jdk14/138/bcmail-jdk14-138.jar"/>
+  </path>
+  
+  <path id="library.maven:_bouncycastle:bcprov-jdk14:138.classpath">
+    <pathelement location="${path.variable.maven_repository}/bouncycastle/bcprov-jdk14/138/bcprov-jdk14-138.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.lowagie:itext:2.1.5.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/lowagie/itext/2.1.5/itext-2.1.5.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.mchange:c3p0:0.9.2.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/mchange/c3p0/0.9.2.1/c3p0-0.9.2.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.mchange:mchange-commons-java:0.2.3.4.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/mchange/mchange-commons-java/0.2.3.4/mchange-commons-java-0.2.3.4.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.opensymphony:xwork:2.1.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/opensymphony/xwork/2.1.2/xwork-2.1.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.sun.mail:javax.mail:1.5.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/sun/mail/javax.mail/1.5.0/javax.mail-1.5.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_commons-beanutils:commons-beanutils:1.8.3.classpath">
+    <pathelement location="${path.variable.maven_repository}/commons-beanutils/commons-beanutils/1.8.3/commons-beanutils-1.8.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_commons-codec:commons-codec:1.9.classpath">
+    <pathelement location="${path.variable.maven_repository}/commons-codec/commons-codec/1.9/commons-codec-1.9.jar"/>
+  </path>
+  
+  <path id="library.maven:_commons-collections:commons-collections:3.2.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_commons-digester:commons-digester:1.8.classpath">
+    <pathelement location="${path.variable.maven_repository}/commons-digester/commons-digester/1.8/commons-digester-1.8.jar"/>
+  </path>
+  
+  <path id="library.maven:_commons-fileupload:commons-fileupload:1.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/commons-fileupload/commons-fileupload/1.2/commons-fileupload-1.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_commons-io:commons-io:2.4.classpath">
+    <pathelement location="${path.variable.maven_repository}/commons-io/commons-io/2.4/commons-io-2.4.jar"/>
+  </path>
+  
+  <path id="library.maven:_commons-lang:commons-lang:2.3.classpath">
+    <pathelement location="${path.variable.maven_repository}/commons-lang/commons-lang/2.3/commons-lang-2.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_commons-logging:commons-logging:1.1.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_dom4j:dom4j:1.6.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_freemarker:freemarker:2.3.8.classpath">
+    <pathelement location="${path.variable.maven_repository}/freemarker/freemarker/2.3.8/freemarker-2.3.8.jar"/>
+  </path>
+  
+  <path id="library.maven:_javassist:javassist:3.11.0.ga.classpath">
+    <pathelement location="${path.variable.maven_repository}/javassist/javassist/3.11.0.GA/javassist-3.11.0.GA.jar"/>
+  </path>
+  
+  <path id="library.maven:_javax.activation:activation:1.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/javax/activation/activation/1.1/activation-1.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_javax.transaction:jta:1.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/javax/transaction/jta/1.1/jta-1.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_javax:javaee-api:7.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/javax/javaee-api/7.0/javaee-api-7.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_junit:junit:3.8.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/junit/junit/3.8.1/junit-3.8.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_log4j:log4j:1.2.17.classpath">
+    <pathelement location="${path.variable.maven_repository}/log4j/log4j/1.2.17/log4j-1.2.17.jar"/>
+  </path>
+  
+  <path id="library.maven:_mysql:mysql-connector-java:5.1.31.classpath">
+    <pathelement location="${path.variable.maven_repository}/mysql/mysql-connector-java/5.1.31/mysql-connector-java-5.1.31.jar"/>
+  </path>
+  
+  <path id="library.maven:_net.sf.ehcache:ehcache-core:2.4.3.classpath">
+    <pathelement location="${path.variable.maven_repository}/net/sf/ehcache/ehcache-core/2.4.3/ehcache-core-2.4.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_ognl:ognl:3.0.6.classpath">
+    <pathelement location="${path.variable.maven_repository}/ognl/ognl/3.0.6/ognl-3.0.6.jar"/>
+  </path>
+  
+  <path id="library.maven:_opensymphony:ognl:2.6.11.classpath">
+    <pathelement location="${path.variable.maven_repository}/opensymphony/ognl/2.6.11/ognl-2.6.11.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.commons:commons-lang3:3.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/commons/commons-lang3/3.1/commons-lang3-3.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.poi:poi:3.13.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/poi/poi/3.13/poi-3.13.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.struts.xwork:xwork-core:2.3.16.3.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/struts/xwork/xwork-core/2.3.16.3/xwork-core-2.3.16.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.struts:struts2-core:2.3.16.3.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/struts/struts2-core/2.3.16.3/struts2-core-2.3.16.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.eclipse.core:commands:3.3.0-i20070605-0010.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/eclipse/core/commands/3.3.0-I20070605-0010/commands-3.3.0-I20070605-0010.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.eclipse.core:contenttype:3.4.200-v20140207-1251.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/eclipse/core/contenttype/3.4.200-v20140207-1251/contenttype-3.4.200-v20140207-1251.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.eclipse.core:jobs:3.6.0-v20140424-0053.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/eclipse/core/jobs/3.6.0-v20140424-0053/jobs-3.6.0-v20140424-0053.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.eclipse.core:runtime:3.9.0-v20130326-1255.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/eclipse/core/runtime/3.9.0-v20130326-1255/runtime-3.9.0-v20130326-1255.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.eclipse.equinox:app:1.3.200-v20130910-1609.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/eclipse/equinox/app/1.3.200-v20130910-1609/app-1.3.200-v20130910-1609.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.eclipse.equinox:common:3.6.200-v20130402-1505.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/eclipse/equinox/common/3.6.200-v20130402-1505/common-3.6.200-v20130402-1505.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.eclipse.equinox:preferences:3.5.200-v20140224-1527.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/eclipse/equinox/preferences/3.5.200-v20140224-1527/preferences-3.5.200-v20140224-1527.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.eclipse.equinox:registry:3.5.400-v20140428-1507.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/eclipse/equinox/registry/3.5.400-v20140428-1507/registry-3.5.400-v20140428-1507.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.eclipse.tycho:org.eclipse.jdt.core:3.9.1.v20130905-0837.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/eclipse/tycho/org.eclipse.jdt.core/3.9.1.v20130905-0837/org.eclipse.jdt.core-3.9.1.v20130905-0837.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.eclipse:osgi:3.10.0-v20140606-1445.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/eclipse/osgi/3.10.0-v20140606-1445/osgi-3.10.0-v20140606-1445.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.eclipse:text:3.3.0-v20070606-0010.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/eclipse/text/3.3.0-v20070606-0010/text-3.3.0-v20070606-0010.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.freemarker:freemarker:2.3.14.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/freemarker/freemarker/2.3.14/freemarker-2.3.14.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.hibernate.common:hibernate-commons-annotations:4.0.5.final.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/hibernate/common/hibernate-commons-annotations/4.0.5.Final/hibernate-commons-annotations-4.0.5.Final.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.final.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/hibernate/javax/persistence/hibernate-jpa-2.0-api/1.0.1.Final/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.final.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.hibernate:ejb3-persistence:3.3.2.beta1.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/hibernate/ejb3-persistence/3.3.2.Beta1/ejb3-persistence-3.3.2.Beta1.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.hibernate:hibernate-annotations:3.5.6-final.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/hibernate/hibernate-annotations/3.5.6-Final/hibernate-annotations-3.5.6-Final.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.hibernate:hibernate-c3p0:4.3.5.final.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/hibernate/hibernate-c3p0/4.3.5.Final/hibernate-c3p0-4.3.5.Final.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.hibernate:hibernate-commons-annotations:3.2.0.final.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/hibernate/hibernate-commons-annotations/3.2.0.Final/hibernate-commons-annotations-3.2.0.Final.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.hibernate:hibernate-core:4.3.5.final.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/hibernate/hibernate-core/4.3.5.Final/hibernate-core-4.3.5.Final.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.hibernate:hibernate-ehcache:4.3.5.final.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/hibernate/hibernate-ehcache/4.3.5.Final/hibernate-ehcache-4.3.5.Final.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.hibernate:hibernate-entitymanager:4.3.5.final.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/hibernate/hibernate-entitymanager/4.3.5.Final/hibernate-entitymanager-4.3.5.Final.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.hibernate:hibernate-jpamodelgen:4.3.5.final.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/hibernate/hibernate-jpamodelgen/4.3.5.Final/hibernate-jpamodelgen-4.3.5.Final.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.hibernate:hibernate-tools:4.3.1.cr1.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/hibernate/hibernate-tools/4.3.1.CR1/hibernate-tools-4.3.1.CR1.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.hibernate:jtidy:r8-20060801.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/hibernate/jtidy/r8-20060801/jtidy-r8-20060801.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.javassist:javassist:3.18.2-ga.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/javassist/javassist/3.18.2-GA/javassist-3.18.2-GA.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.jboss.logging:jboss-logging-annotations:1.2.0.beta1.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/jboss/logging/jboss-logging-annotations/1.2.0.Beta1/jboss-logging-annotations-1.2.0.Beta1.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.jboss.logging:jboss-logging:3.1.3.ga.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/jboss/logging/jboss-logging/3.1.3.GA/jboss-logging-3.1.3.GA.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.jboss.spec.javax.transaction:jboss-transaction-api_1.2_spec:1.0.0.final.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/jboss/spec/javax/transaction/jboss-transaction-api_1.2_spec/1.0.0.Final/jboss-transaction-api_1.2_spec-1.0.0.Final.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.jboss:jandex:1.1.0.final.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/jboss/jandex/1.1.0.Final/jandex-1.1.0.Final.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.jfree:jcommon:1.0.17.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/jfree/jcommon/1.0.17/jcommon-1.0.17.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.jfree:jfreechart:1.0.14.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/jfree/jfreechart/1.0.14/jfreechart-1.0.14.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.slf4j:slf4j-api:1.5.8.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/slf4j/slf4j-api/1.5.8/slf4j-api-1.5.8.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.slf4j:slf4j-simple:1.7.7.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/slf4j/slf4j-simple/1.7.7/slf4j-simple-1.7.7.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-test:2.5.6.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/springframework/spring-test/2.5.6/spring-test-2.5.6.jar"/>
+  </path>
+  
+  <path id="library.maven:_xml-apis:xml-apis:1.3.04.classpath">
+    <pathelement location="${path.variable.maven_repository}/xml-apis/xml-apis/1.3.04/xml-apis-1.3.04.jar"/>
+  </path>
+  
+  <path id="library.struts_2-2.3.20.1.classpath">
+    <pathelement location="${basedir}/lib/asm-commons.jar"/>
+    <pathelement location="${basedir}/lib/asm-tree.jar"/>
+    <pathelement location="${basedir}/lib/asm.jar"/>
+    <pathelement location="${basedir}/lib/commons-fileupload.jar"/>
+    <pathelement location="${basedir}/lib/commons-io.jar"/>
+    <pathelement location="${basedir}/lib/commons-lang.jar"/>
+    <pathelement location="${basedir}/lib/freemarker.jar"/>
+    <pathelement location="${basedir}/lib/javassist.jar"/>
+    <pathelement location="${basedir}/lib/ognl.jar"/>
+    <pathelement location="${basedir}/lib/struts2-core.jar"/>
+    <pathelement location="${basedir}/lib/xwork-core.jar"/>
+  </path>
+  
+  
+  <!-- Application Server Libraries -->
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <pathelement location="${javac2.home}/javac2.jar"/>
+    <pathelement location="${javac2.home}/jdom.jar"/>
+    <pathelement location="${javac2.home}/asm-all.jar"/>
+    <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  <import file="${basedir}/module_hamstring.xml"/>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.hamstring, clean.artifact.hamstring:javaeeapplication_exploded, clean.artifact.hamstring:war_exploded" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.hamstring" description="build all modules"/>
+  
+  <target name="init.artifacts">
+    <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
+    <property name="artifact.output.hamstring:javaeeapplication_exploded" value="${basedir}/out/artifacts/Hamstring_javaEEApplication_exploded"/>
+    <property name="artifact.output.hamstring:war" value="${basedir}/target"/>
+    <property name="artifact.output.hamstring:war_exploded" value="${basedir}/target/Hamstring-1.0"/>
+    <mkdir dir="${artifacts.temp.dir}"/>
+    <property name="temp.jar.path.Hamstring-1.0.war" value="${artifacts.temp.dir}/Hamstring-1.0.war"/>
+  </target>
+  
+  <target name="clean.artifact.hamstring:javaeeapplication_exploded" description="clean Hamstring:javaEEApplication exploded artifact output">
+    <delete dir="${artifact.output.hamstring:javaeeapplication_exploded}"/>
+  </target>
+  
+  <target name="clean.artifact.hamstring:war_exploded" description="clean Hamstring:war exploded artifact output">
+    <delete dir="${artifact.output.hamstring:war_exploded}"/>
+  </target>
+  
+  <target name="artifact.hamstring:javaeeapplication_exploded" depends="init.artifacts" description="Build &#39;Hamstring:javaEEApplication exploded&#39; artifact">
+    <mkdir dir="${artifact.output.hamstring:javaeeapplication_exploded}"/>
+    <mkdir dir="${artifact.output.hamstring:javaeeapplication_exploded}/META-INF"/>
+    <copy file="${basedir}/META-INF/application.xml" tofile="${artifact.output.hamstring:javaeeapplication_exploded}/META-INF/application.xml"/>
+  </target>
+  
+  <target name="artifact.hamstring:war" depends="init.artifacts, artifact.hamstring:war_exploded" description="Build &#39;Hamstring:war&#39; artifact">
+    <property name="artifact.temp.output.hamstring:war" value="${artifacts.temp.dir}/Hamstring_war"/>
+    <mkdir dir="${artifact.temp.output.hamstring:war}"/>
+    <zip destfile="${temp.jar.path.Hamstring-1.0.war}">
+      <zipfileset dir="${artifact.temp.output.hamstring:war_exploded}"/>
+    </zip>
+    <copy file="${temp.jar.path.Hamstring-1.0.war}" tofile="${artifact.temp.output.hamstring:war}/Hamstring-1.0.war"/>
+  </target>
+  
+  <target name="artifact.hamstring:war_exploded" depends="init.artifacts, compile.module.hamstring" description="Build &#39;Hamstring:war exploded&#39; artifact">
+    <mkdir dir="${artifact.output.hamstring:war_exploded}"/>
+    <mkdir dir="${artifact.output.hamstring:war_exploded}/WEB-INF"/>
+    <mkdir dir="${artifact.output.hamstring:war_exploded}/WEB-INF/classes"/>
+    <copy todir="${artifact.output.hamstring:war_exploded}/WEB-INF/classes">
+      <fileset dir="${hamstring.output.dir}"/>
+    </copy>
+    <mkdir dir="${artifact.output.hamstring:war_exploded}/WEB-INF/lib"/>
+    <copy file="${path.variable.maven_repository}/mysql/mysql-connector-java/5.1.31/mysql-connector-java-5.1.31.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/mysql-connector-java-5.1.31.jar"/>
+    <copy file="${path.variable.maven_repository}/log4j/log4j/1.2.17/log4j-1.2.17.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/log4j-1.2.17.jar"/>
+    <copy file="${path.variable.maven_repository}/org/hibernate/hibernate-core/4.3.5.Final/hibernate-core-4.3.5.Final.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/hibernate-core-4.3.5.Final.jar"/>
+    <copy file="${path.variable.maven_repository}/org/jboss/logging/jboss-logging/3.1.3.GA/jboss-logging-3.1.3.GA.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/jboss-logging-3.1.3.GA.jar"/>
+    <copy file="${path.variable.maven_repository}/org/jboss/logging/jboss-logging-annotations/1.2.0.Beta1/jboss-logging-annotations-1.2.0.Beta1.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/jboss-logging-annotations-1.2.0.Beta1.jar"/>
+    <copy file="${path.variable.maven_repository}/org/jboss/spec/javax/transaction/jboss-transaction-api_1.2_spec/1.0.0.Final/jboss-transaction-api_1.2_spec-1.0.0.Final.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/jboss-transaction-api_1.2_spec-1.0.0.Final.jar"/>
+    <copy file="${path.variable.maven_repository}/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/dom4j-1.6.1.jar"/>
+    <copy file="${path.variable.maven_repository}/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/hibernate-jpa-2.1-api-1.0.0.Final.jar"/>
+    <copy file="${path.variable.maven_repository}/antlr/antlr/2.7.7/antlr-2.7.7.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/antlr-2.7.7.jar"/>
+    <copy file="${path.variable.maven_repository}/org/jboss/jandex/1.1.0.Final/jandex-1.1.0.Final.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/jandex-1.1.0.Final.jar"/>
+    <copy file="${path.variable.maven_repository}/org/javassist/javassist/3.18.2-GA/javassist-3.18.2-GA.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/javassist-3.18.2-GA.jar"/>
+    <copy file="${path.variable.maven_repository}/org/hibernate/hibernate-annotations/3.5.6-Final/hibernate-annotations-3.5.6-Final.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/hibernate-annotations-3.5.6-Final.jar"/>
+    <copy file="${path.variable.maven_repository}/org/hibernate/hibernate-commons-annotations/3.2.0.Final/hibernate-commons-annotations-3.2.0.Final.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/hibernate-commons-annotations-3.2.0.Final.jar"/>
+    <copy file="${path.variable.maven_repository}/org/slf4j/slf4j-api/1.5.8/slf4j-api-1.5.8.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/slf4j-api-1.5.8.jar"/>
+    <copy file="${path.variable.maven_repository}/org/hibernate/hibernate-tools/4.3.1.CR1/hibernate-tools-4.3.1.CR1.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/hibernate-tools-4.3.1.CR1.jar"/>
+    <copy file="${path.variable.maven_repository}/javax/transaction/jta/1.1/jta-1.1.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/jta-1.1.jar"/>
+    <copy file="${path.variable.maven_repository}/ant/ant/1.6.5/ant-1.6.5.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/ant-1.6.5.jar"/>
+    <copy file="${path.variable.maven_repository}/freemarker/freemarker/2.3.8/freemarker-2.3.8.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/freemarker-2.3.8.jar"/>
+    <copy file="${path.variable.maven_repository}/org/hibernate/jtidy/r8-20060801/jtidy-r8-20060801.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/jtidy-r8-20060801.jar"/>
+    <copy file="${path.variable.maven_repository}/org/eclipse/tycho/org.eclipse.jdt.core/3.9.1.v20130905-0837/org.eclipse.jdt.core-3.9.1.v20130905-0837.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/org.eclipse.jdt.core-3.9.1.v20130905-0837.jar"/>
+    <copy file="${path.variable.maven_repository}/org/eclipse/text/3.3.0-v20070606-0010/text-3.3.0-v20070606-0010.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/text-3.3.0-v20070606-0010.jar"/>
+    <copy file="${path.variable.maven_repository}/org/eclipse/core/commands/3.3.0-I20070605-0010/commands-3.3.0-I20070605-0010.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/commands-3.3.0-I20070605-0010.jar"/>
+    <copy file="${path.variable.maven_repository}/org/eclipse/core/runtime/3.9.0-v20130326-1255/runtime-3.9.0-v20130326-1255.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/runtime-3.9.0-v20130326-1255.jar"/>
+    <copy file="${path.variable.maven_repository}/org/eclipse/osgi/3.10.0-v20140606-1445/osgi-3.10.0-v20140606-1445.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/osgi-3.10.0-v20140606-1445.jar"/>
+    <copy file="${path.variable.maven_repository}/org/eclipse/core/jobs/3.6.0-v20140424-0053/jobs-3.6.0-v20140424-0053.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/jobs-3.6.0-v20140424-0053.jar"/>
+    <copy file="${path.variable.maven_repository}/org/eclipse/equinox/registry/3.5.400-v20140428-1507/registry-3.5.400-v20140428-1507.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/registry-3.5.400-v20140428-1507.jar"/>
+    <copy file="${path.variable.maven_repository}/org/eclipse/equinox/preferences/3.5.200-v20140224-1527/preferences-3.5.200-v20140224-1527.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/preferences-3.5.200-v20140224-1527.jar"/>
+    <copy file="${path.variable.maven_repository}/org/eclipse/core/contenttype/3.4.200-v20140207-1251/contenttype-3.4.200-v20140207-1251.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/contenttype-3.4.200-v20140207-1251.jar"/>
+    <copy file="${path.variable.maven_repository}/org/eclipse/equinox/app/1.3.200-v20130910-1609/app-1.3.200-v20130910-1609.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/app-1.3.200-v20130910-1609.jar"/>
+    <copy file="${path.variable.maven_repository}/org/eclipse/equinox/common/3.6.200-v20130402-1505/common-3.6.200-v20130402-1505.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/common-3.6.200-v20130402-1505.jar"/>
+    <copy file="${path.variable.maven_repository}/org/hibernate/common/hibernate-commons-annotations/4.0.5.Final/hibernate-commons-annotations-4.0.5.Final.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/hibernate-commons-annotations-4.0.5.Final.jar"/>
+    <copy file="${path.variable.maven_repository}/org/hibernate/javax/persistence/hibernate-jpa-2.0-api/1.0.1.Final/hibernate-jpa-2.0-api-1.0.1.Final.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
+    <copy file="${path.variable.maven_repository}/org/hibernate/hibernate-jpamodelgen/4.3.5.Final/hibernate-jpamodelgen-4.3.5.Final.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/hibernate-jpamodelgen-4.3.5.Final.jar"/>
+    <copy file="${path.variable.maven_repository}/org/hibernate/ejb3-persistence/3.3.2.Beta1/ejb3-persistence-3.3.2.Beta1.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/ejb3-persistence-3.3.2.Beta1.jar"/>
+    <copy file="${path.variable.maven_repository}/org/hibernate/hibernate-entitymanager/4.3.5.Final/hibernate-entitymanager-4.3.5.Final.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/hibernate-entitymanager-4.3.5.Final.jar"/>
+    <copy file="${path.variable.maven_repository}/org/hibernate/hibernate-c3p0/4.3.5.Final/hibernate-c3p0-4.3.5.Final.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/hibernate-c3p0-4.3.5.Final.jar"/>
+    <copy file="${path.variable.maven_repository}/com/mchange/c3p0/0.9.2.1/c3p0-0.9.2.1.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/c3p0-0.9.2.1.jar"/>
+    <copy file="${path.variable.maven_repository}/com/mchange/mchange-commons-java/0.2.3.4/mchange-commons-java-0.2.3.4.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/mchange-commons-java-0.2.3.4.jar"/>
+    <copy file="${path.variable.maven_repository}/org/hibernate/hibernate-ehcache/4.3.5.Final/hibernate-ehcache-4.3.5.Final.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/hibernate-ehcache-4.3.5.Final.jar"/>
+    <copy file="${path.variable.maven_repository}/net/sf/ehcache/ehcache-core/2.4.3/ehcache-core-2.4.3.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/ehcache-core-2.4.3.jar"/>
+    <copy file="${path.variable.maven_repository}/org/slf4j/slf4j-simple/1.7.7/slf4j-simple-1.7.7.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/slf4j-simple-1.7.7.jar"/>
+    <copy file="${path.variable.maven_repository}/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/commons-collections-3.2.1.jar"/>
+    <copy file="${path.variable.maven_repository}/commons-digester/commons-digester/1.8/commons-digester-1.8.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/commons-digester-1.8.jar"/>
+    <copy file="${path.variable.maven_repository}/commons-beanutils/commons-beanutils/1.8.3/commons-beanutils-1.8.3.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/commons-beanutils-1.8.3.jar"/>
+    <copy file="${path.variable.maven_repository}/commons-fileupload/commons-fileupload/1.2/commons-fileupload-1.2.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/commons-fileupload-1.2.jar"/>
+    <copy file="${path.variable.maven_repository}/commons-io/commons-io/2.4/commons-io-2.4.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/commons-io-2.4.jar"/>
+    <copy file="${path.variable.maven_repository}/commons-lang/commons-lang/2.3/commons-lang-2.3.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/commons-lang-2.3.jar"/>
+    <copy file="${path.variable.maven_repository}/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/commons-logging-1.1.1.jar"/>
+    <copy file="${path.variable.maven_repository}/org/freemarker/freemarker/2.3.14/freemarker-2.3.14.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/freemarker-2.3.14.jar"/>
+    <copy file="${path.variable.maven_repository}/org/jfree/jfreechart/1.0.14/jfreechart-1.0.14.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/jfreechart-1.0.14.jar"/>
+    <copy file="${path.variable.maven_repository}/org/jfree/jcommon/1.0.17/jcommon-1.0.17.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/jcommon-1.0.17.jar"/>
+    <copy file="${path.variable.maven_repository}/xml-apis/xml-apis/1.3.04/xml-apis-1.3.04.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/xml-apis-1.3.04.jar"/>
+    <copy file="${path.variable.maven_repository}/com/lowagie/itext/2.1.5/itext-2.1.5.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/itext-2.1.5.jar"/>
+    <copy file="${path.variable.maven_repository}/bouncycastle/bcmail-jdk14/138/bcmail-jdk14-138.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/bcmail-jdk14-138.jar"/>
+    <copy file="${path.variable.maven_repository}/bouncycastle/bcprov-jdk14/138/bcprov-jdk14-138.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/bcprov-jdk14-138.jar"/>
+    <copy file="${path.variable.maven_repository}/org/apache/struts/struts2-core/2.3.16.3/struts2-core-2.3.16.3.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/struts2-core-2.3.16.3.jar"/>
+    <copy file="${path.variable.maven_repository}/org/apache/struts/xwork/xwork-core/2.3.16.3/xwork-core-2.3.16.3.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/xwork-core-2.3.16.3.jar"/>
+    <copy file="${path.variable.maven_repository}/org/apache/commons/commons-lang3/3.1/commons-lang3-3.1.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/commons-lang3-3.1.jar"/>
+    <copy file="${path.variable.maven_repository}/asm/asm/3.3/asm-3.3.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/asm-3.3.jar"/>
+    <copy file="${path.variable.maven_repository}/asm/asm-commons/3.3/asm-commons-3.3.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/asm-commons-3.3.jar"/>
+    <copy file="${path.variable.maven_repository}/asm/asm-tree/3.3/asm-tree-3.3.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/asm-tree-3.3.jar"/>
+    <copy file="${path.variable.maven_repository}/ognl/ognl/3.0.6/ognl-3.0.6.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/ognl-3.0.6.jar"/>
+    <copy file="${path.variable.maven_repository}/javassist/javassist/3.11.0.GA/javassist-3.11.0.GA.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/javassist-3.11.0.GA.jar"/>
+    <copy file="${path.variable.maven_repository}/com/opensymphony/xwork/2.1.2/xwork-2.1.2.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/xwork-2.1.2.jar"/>
+    <copy file="${path.variable.maven_repository}/opensymphony/ognl/2.6.11/ognl-2.6.11.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/ognl-2.6.11.jar"/>
+    <copy file="${path.variable.maven_repository}/org/springframework/spring-test/2.5.6/spring-test-2.5.6.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/spring-test-2.5.6.jar"/>
+    <copy file="${path.variable.maven_repository}/junit/junit/3.8.1/junit-3.8.1.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/junit-3.8.1.jar"/>
+    <copy file="${path.variable.maven_repository}/org/apache/poi/poi/3.13/poi-3.13.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/poi-3.13.jar"/>
+    <copy file="${path.variable.maven_repository}/commons-codec/commons-codec/1.9/commons-codec-1.9.jar" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/lib/commons-codec-1.9.jar"/>
+    <mkdir dir="${artifact.output.hamstring:war_exploded}/META-INF"/>
+    <copy file="${basedir}/target/Hamstring-1.0/META-INF/MANIFEST.MF" tofile="${artifact.output.hamstring:war_exploded}/META-INF/MANIFEST.MF"/>
+    <copy todir="${artifact.output.hamstring:war_exploded}">
+      <fileset dir="${basedir}/src/main/webapp"/>
+    </copy>
+    <mkdir dir="${artifact.output.hamstring:war_exploded}/WEB-INF"/>
+    <copy file="${basedir}/web/WEB-INF/web.xml" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/web.xml"/>
+  </target>
+  
+  <target name="build.all.artifacts" depends="artifact.hamstring:javaeeapplication_exploded, artifact.hamstring:war, artifact.hamstring:war_exploded" description="Build all artifacts">
+    <mkdir dir="${artifact.output.hamstring:war}"/>
+    <copy todir="${artifact.output.hamstring:war}">
+      <fileset dir="${artifact.temp.output.hamstring:war}"/>
+    </copy>
+    
+    <!-- Delete temporary files -->
+    <delete dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+</project>

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="hamstring" default="all">
+  
+  
+  <property file="hamstring.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.swc"/>
+    <include name="*.apk"/>
+    <include name="*.zip"/>
+    <include name="*.egg"/>
+    <include name="*.ane"/>
+    <include name="*.jar"/>
+    <include name="*.ear"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
+  <path id="jdk.classpath.1.8">
+    <fileset dir="${jdk.home.1.8}">
+      <include name="../latest/jre/lib/charsets.jar"/>
+      <include name="../latest/jre/lib/deploy.jar"/>
+      <include name="../latest/jre/lib/ext/cldrdata.jar"/>
+      <include name="../latest/jre/lib/ext/dnsns.jar"/>
+      <include name="../latest/jre/lib/ext/jaccess.jar"/>
+      <include name="../latest/jre/lib/ext/jfxrt.jar"/>
+      <include name="../latest/jre/lib/ext/localedata.jar"/>
+      <include name="../latest/jre/lib/ext/nashorn.jar"/>
+      <include name="../latest/jre/lib/ext/sunec.jar"/>
+      <include name="../latest/jre/lib/ext/sunjce_provider.jar"/>
+      <include name="../latest/jre/lib/ext/sunpkcs11.jar"/>
+      <include name="../latest/jre/lib/ext/zipfs.jar"/>
+      <include name="../latest/jre/lib/javaws.jar"/>
+      <include name="../latest/jre/lib/jce.jar"/>
+      <include name="../latest/jre/lib/jfr.jar"/>
+      <include name="../latest/jre/lib/jfxswt.jar"/>
+      <include name="../latest/jre/lib/jsse.jar"/>
+      <include name="../latest/jre/lib/management-agent.jar"/>
+      <include name="../latest/jre/lib/plugin.jar"/>
+      <include name="../latest/jre/lib/resources.jar"/>
+      <include name="../latest/jre/lib/rt.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.8}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.hibernate_4.2.2-4.2.2.classpath">
+    <pathelement location="${basedir}/lib/antlr-2.7.7.jar"/>
+    <pathelement location="${basedir}/lib/dom4j-1.6.1.jar"/>
+    <pathelement location="${basedir}/lib/hibernate-commons-annotations-4.0.2.Final.jar"/>
+    <pathelement location="${basedir}/lib/hibernate-core-4.2.2.Final.jar"/>
+    <pathelement location="${basedir}/lib/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
+    <pathelement location="${basedir}/lib/javassist-3.15.0-GA.jar"/>
+    <pathelement location="${basedir}/lib/jboss-logging-3.1.0.GA.jar"/>
+    <pathelement location="${basedir}/lib/jboss-transaction-api_1.1_spec-1.0.1.Final.jar"/>
+  </path>
+  
+  <path id="library.java_ee_6-java_ee_6.classpath">
+    <pathelement location="${basedir}/lib/javax.ejb.jar"/>
+    <pathelement location="${basedir}/lib/javax.jms.jar"/>
+    <pathelement location="${basedir}/lib/javax.resource.jar"/>
+    <pathelement location="${basedir}/lib/javax.servlet.jar"/>
+    <pathelement location="${basedir}/lib/javax.servlet.jsp.jar"/>
+    <pathelement location="${basedir}/lib/javax.servlet.jsp.jstl.jar"/>
+  </path>
+  
+  <path id="library.jax-ws-glassfish_/_jax-ws_2.2_ri_/_metro_1.x_/_jwsdp_2.2.classpath">
+    <pathelement location="${basedir}/lib/FastInoset.jar"/>
+    <pathelement location="${basedir}/lib/gmbal-api-only.jar"/>
+    <pathelement location="${basedir}/lib/ha-api.jar"/>
+    <pathelement location="${basedir}/lib/javax.annotation.jar"/>
+    <pathelement location="${basedir}/lib/jaxb-api.jar"/>
+    <pathelement location="${basedir}/lib/jaxb-impl.jar"/>
+    <pathelement location="${basedir}/lib/jaxb-xjc.jar"/>
+    <pathelement location="${basedir}/lib/jaxws-api.jar"/>
+    <pathelement location="${basedir}/lib/jaxws-rt.jar"/>
+    <pathelement location="${basedir}/lib/jaxws-tools.jar"/>
+    <pathelement location="${basedir}/lib/jsr181-api.jar"/>
+    <pathelement location="${basedir}/lib/mail.jar"/>
+    <pathelement location="${basedir}/lib/management-api.jar"/>
+    <pathelement location="${basedir}/lib/mimepull.jar"/>
+    <pathelement location="${basedir}/lib/policy.jar"/>
+    <pathelement location="${basedir}/lib/saaj-api.jar"/>
+    <pathelement location="${basedir}/lib/saaj-impl.jar"/>
+    <pathelement location="${basedir}/lib/stax-ex.jar"/>
+    <pathelement location="${basedir}/lib/stax2-api.jar"/>
+    <pathelement location="${basedir}/lib/streambuffer.jar"/>
+    <pathelement location="${basedir}/lib/woodstox-core-asl.jar"/>
+  </path>
+  
+  <path id="library.jpa_2.0-2.0.classpath">
+    <pathelement location="${basedir}/lib/javax.persistence.jar"/>
+  </path>
+  
+  <path id="library.struts_2-2.3.20.1.classpath">
+    <pathelement location="${basedir}/lib/asm-commons.jar"/>
+    <pathelement location="${basedir}/lib/asm-tree.jar"/>
+    <pathelement location="${basedir}/lib/asm.jar"/>
+    <pathelement location="${basedir}/lib/commons-fileupload.jar"/>
+    <pathelement location="${basedir}/lib/commons-io.jar"/>
+    <pathelement location="${basedir}/lib/commons-lang.jar"/>
+    <pathelement location="${basedir}/lib/freemarker.jar"/>
+    <pathelement location="${basedir}/lib/javassist.jar"/>
+    <pathelement location="${basedir}/lib/ognl.jar"/>
+    <pathelement location="${basedir}/lib/struts2-core.jar"/>
+    <pathelement location="${basedir}/lib/xwork-core.jar"/>
+  </path>
+  
+  
+  <!-- Application Server Libraries -->
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <pathelement location="${javac2.home}/javac2.jar"/>
+    <pathelement location="${javac2.home}/jdom.jar"/>
+    <pathelement location="${javac2.home}/asm-all.jar"/>
+    <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  <import file="${basedir}/module_hamstring.xml"/>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.hamstring, clean.artifact.hamstring:javaeeapplication_exploded, clean.artifact.hamstring:war_exploded" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.hamstring" description="build all modules"/>
+  
+  <target name="init.artifacts">
+    <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
+    <property name="artifact.output.hamstring:javaeeapplication_exploded" value="${basedir}/out/artifacts/Hamstring_javaEEApplication_exploded"/>
+    <property name="artifact.output.hamstring:war_exploded" value="${basedir}/out/artifacts/Hamstring_war_exploded"/>
+    <mkdir dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="clean.artifact.hamstring:javaeeapplication_exploded" description="clean Hamstring:javaEEApplication exploded artifact output">
+    <delete dir="${artifact.output.hamstring:javaeeapplication_exploded}"/>
+  </target>
+  
+  <target name="clean.artifact.hamstring:war_exploded" description="clean Hamstring:war exploded artifact output">
+    <delete dir="${artifact.output.hamstring:war_exploded}"/>
+  </target>
+  
+  <target name="artifact.hamstring:javaeeapplication_exploded" depends="init.artifacts" description="Build &#39;Hamstring:javaEEApplication exploded&#39; artifact">
+    <mkdir dir="${artifact.output.hamstring:javaeeapplication_exploded}"/>
+    <mkdir dir="${artifact.output.hamstring:javaeeapplication_exploded}/META-INF"/>
+    <copy file="${basedir}/META-INF/application.xml" tofile="${artifact.output.hamstring:javaeeapplication_exploded}/META-INF/application.xml"/>
+  </target>
+  
+  <target name="artifact.hamstring:war_exploded" depends="init.artifacts, compile.module.hamstring" description="Build &#39;Hamstring:war exploded&#39; artifact">
+    <mkdir dir="${artifact.output.hamstring:war_exploded}"/>
+    <copy todir="${artifact.output.hamstring:war_exploded}">
+      <fileset dir="${basedir}/web"/>
+    </copy>
+    <mkdir dir="${artifact.output.hamstring:war_exploded}/WEB-INF"/>
+    <copy file="${basedir}/web/WEB-INF/web.xml" tofile="${artifact.output.hamstring:war_exploded}/WEB-INF/web.xml"/>
+    <mkdir dir="${artifact.output.hamstring:war_exploded}/WEB-INF"/>
+    <mkdir dir="${artifact.output.hamstring:war_exploded}/WEB-INF/classes"/>
+    <copy todir="${artifact.output.hamstring:war_exploded}/WEB-INF/classes">
+      <fileset dir="${hamstring.output.dir}"/>
+    </copy>
+  </target>
+  
+  <target name="build.all.artifacts" depends="artifact.hamstring:javaeeapplication_exploded, artifact.hamstring:war_exploded" description="Build all artifacts">
+    
+    <!-- Delete temporary files -->
+    <delete dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+</project>
