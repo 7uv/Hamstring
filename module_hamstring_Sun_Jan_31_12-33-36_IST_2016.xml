@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_hamstring" default="compile.module.hamstring">
+  <dirname property="module.hamstring.basedir" file="${ant.file.module_hamstring}"/>
+  
+  <property name="module.jdk.home.hamstring" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.hamstring" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.hamstring" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.hamstring" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="hamstring.output.dir" value="${module.hamstring.basedir}/out/production/Hamstring"/>
+  <property name="hamstring.testoutput.dir" value="${module.hamstring.basedir}/out/test/Hamstring"/>
+  
+  <path id="hamstring.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="hamstring.module.production.classpath">
+    <path refid="${module.jdk.classpath.hamstring}"/>
+    <fileset dir="${basedir}/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <path refid="library.jpa_2.0-2.0.classpath"/>
+    <path refid="library.hibernate_4.2.2-4.2.2.classpath"/>
+    <path refid="library.jax-ws-glassfish_/_jax-ws_2.2_ri_/_metro_1.x_/_jwsdp_2.2.classpath"/>
+    <path refid="library.struts_2-2.3.20.1.classpath"/>
+    <path refid="library.java_ee_6-java_ee_6.classpath"/>
+  </path>
+  
+  <path id="hamstring.runtime.production.module.classpath">
+    <pathelement location="${hamstring.output.dir}"/>
+    <fileset dir="${basedir}/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <path refid="library.jpa_2.0-2.0.classpath"/>
+    <path refid="library.hibernate_4.2.2-4.2.2.classpath"/>
+    <path refid="library.jax-ws-glassfish_/_jax-ws_2.2_ri_/_metro_1.x_/_jwsdp_2.2.classpath"/>
+    <path refid="library.struts_2-2.3.20.1.classpath"/>
+    <path refid="library.java_ee_6-java_ee_6.classpath"/>
+  </path>
+  
+  <path id="hamstring.module.classpath">
+    <path refid="${module.jdk.classpath.hamstring}"/>
+    <pathelement location="${hamstring.output.dir}"/>
+    <fileset dir="${basedir}/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <path refid="library.jpa_2.0-2.0.classpath"/>
+    <path refid="library.hibernate_4.2.2-4.2.2.classpath"/>
+    <path refid="library.jax-ws-glassfish_/_jax-ws_2.2_ri_/_metro_1.x_/_jwsdp_2.2.classpath"/>
+    <path refid="library.struts_2-2.3.20.1.classpath"/>
+    <path refid="library.java_ee_6-java_ee_6.classpath"/>
+  </path>
+  
+  <path id="hamstring.runtime.module.classpath">
+    <pathelement location="${hamstring.testoutput.dir}"/>
+    <pathelement location="${hamstring.output.dir}"/>
+    <fileset dir="${basedir}/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <path refid="library.jpa_2.0-2.0.classpath"/>
+    <path refid="library.hibernate_4.2.2-4.2.2.classpath"/>
+    <path refid="library.jax-ws-glassfish_/_jax-ws_2.2_ri_/_metro_1.x_/_jwsdp_2.2.classpath"/>
+    <path refid="library.struts_2-2.3.20.1.classpath"/>
+    <path refid="library.java_ee_6-java_ee_6.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.hamstring">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.hamstring">
+    <patternset refid="excluded.from.module.hamstring"/>
+  </patternset>
+  
+  <path id="hamstring.module.sourcepath">
+    <dirset dir="${module.hamstring.basedir}">
+      <include name="src"/>
+      <include name="ci"/>
+      <include name="config"/>
+      <include name="lib"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.hamstring" depends="compile.module.hamstring.production,compile.module.hamstring.tests" description="Compile module Hamstring"/>
+  
+  <target name="compile.module.hamstring.production" depends="register.custom.compilers" description="Compile module Hamstring; production classes">
+    <mkdir dir="${hamstring.output.dir}"/>
+    <javac2 destdir="${hamstring.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.hamstring}/javac">
+      <compilerarg line="${compiler.args.hamstring}"/>
+      <bootclasspath refid="hamstring.module.bootclasspath"/>
+      <classpath refid="hamstring.module.production.classpath"/>
+      <src refid="hamstring.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.hamstring"/>
+    </javac2>
+    
+    <copy todir="${hamstring.output.dir}">
+      <fileset dir="${module.hamstring.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.hamstring.basedir}/ci">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.hamstring.basedir}/config">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.hamstring.basedir}/lib">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.hamstring.tests" depends="register.custom.compilers,compile.module.hamstring.production" description="compile module Hamstring; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.hamstring" description="cleanup module">
+    <delete dir="${hamstring.output.dir}"/>
+    <delete dir="${hamstring.testoutput.dir}"/>
+  </target>
+</project>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="MySQL - mysql@localhost" uuid="e7218729-d8b6-4688-9d3d-479f79305a45">
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-pattern>mysql.*</schema-pattern>
+      <default-schemas>mysql.*</default-schemas>
+    </data-source>
+    <data-source name="Derby (Embedded) - DerbyDB" uuid="6f780d5b-7419-440f-9120-a5c1edfb0024">
+      <secret-storage>master_key</secret-storage>
+      <user-name>admin</user-name>
+      <schema-pattern>*.APP</schema-pattern>
+      <default-schemas>*.APP</default-schemas>
+    </data-source>
+  </component>
+</project>

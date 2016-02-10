@@ -17,6 +17,7 @@ apply plugin: 'eclipse'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'maven'
 apply plugin: 'war'
+apply plugin: 'idea'
 //apply plugin: 'tomcat'
 //apply plugin: 'jboss'
 
@@ -44,10 +45,21 @@ repositories {
         name 'dist'
     }
     maven {
+        url "https://plugins.gradle.org/m2/"
+    }
+    maven {
         url "http://download.java.net/maven/2/"
+    }
+    maven {
         url "http://download.java.net/maven/glassfish/"
+    }
+    maven {
         url "http://maven.repository.redhat.com/techpreview/all/"
+    }
+    maven {
         url "http://htmleasy-maven.googlecode.com/svn/trunk/"
+    }
+    maven {
         url "http://mvnrepository.com/artifact/javax.servlet"
     }
     // mavenRepo name: 'jboss-nexus', url: "http://repository.jboss.org/nexus/content/groups/public/"
@@ -195,6 +207,7 @@ task ci(dependsOn: ['clean', 'build', 'uploadArchives']) {
 task scrub(type: Delete) {
     delete "build"
 }
+
 // print the o/p on console
 sourceSets.all {
     println name
